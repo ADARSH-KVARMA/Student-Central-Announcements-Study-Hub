@@ -1,7 +1,14 @@
 import requests
+import os
+from dotenv import load_dotenv
 
-# Replace this with your actual deployed Apps Script URL
-YOUR_DEPLOYMENT_ID = "AKfycbxreQycF3Amnn7QxH27v6ZrsulGvclAzqLG1LsTbiot2Ma4puwzCvdNV3BNLXhVu8mU"
+# Load environment variables from .env file
+load_dotenv()
+SCRIPT_ID = os.getenv("SCRIPT_ID")
+
+
+# Replace this with your actual deployed Apps Script URLSCRIPT_IDSCRIPT_ID
+YOUR_DEPLOYMENT_ID = SCRIPT_ID
 WEB_APP_URL = f"https://script.google.com/macros/s/{YOUR_DEPLOYMENT_ID}/exec"
 
 def get_users():

@@ -78,6 +78,14 @@ p {
     min-font-size: 12px; /* Minimum font size for paragraph */
 }
 
+footer {
+    margin-top: auto; /* This pushes the footer to the bottom */
+    /* Add any other footer styles here */
+    color: white; /* Example styling */
+    padding: 10px; /* Example styling */
+    text-align: center; /* Example styling */
+  }
+
 #login-banner {
     background-color: #4CAF50;
     color: white;
@@ -225,6 +233,7 @@ p {
         transform: translateY(-8px) rotate(-45deg);
     }
 
+    
     hr {
         margin-top: 15px;
         margin-bottom: 15px;

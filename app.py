@@ -1,10 +1,29 @@
+# /// script
+# dependencies = [
+#   "flask",
+#   "pandas",
+#   "gspread",
+#   "oauth2client",
+# ]
+# ///
+
 import pandas as pd
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from sheets import get_users, register_user
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY")
+ANNOUNCEMENT_SHEET_ID = os.getenv("ANNOUNCEMENT_SHEET_ID")
+MATERIALS_SHEET_ID = os.getenv("MATERIALS_SHEET_ID")
+SEMESTER_MATERIALS_SHEET_ID = os.getenv("SEMESTER_MATERIALS_SHEET_ID")
+WEEKLY_PLANER_SHEET_ID = os.getenv("WEEKLY_PLANER_SHEET_ID")
+
 app = Flask(__name__)
 
-app.secret_key = 'your_secret_key'
-your_deployment_id = 'AKfycbwMXr1lTdHlvyfF687iJ0GTrHA2uUpoOFpKVuhChaRZlukg3ReaNM4IG_0PxKeaiGEq'
+app.secret_key = SECRET_KEY
 
 
 
@@ -22,7 +41,7 @@ def timetable():
 
 @app.route('/announcements.html')
 def announcements():
-    Sheet_ID = "162y73nVEfJyMKpyEWXwYgYFYul8MObg_2ed3WN_s9gA"
+    Sheet_ID = ANNOUNCEMENT_SHEET_ID
     df  = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{Sheet_ID}/export?format=csv") 
     announcements = df.to_dict(orient='records') # converitng it to required format
     announcements = announcements[::-1]
@@ -32,7 +51,7 @@ def announcements():
 @app.route('/materials.html')
 def materials_home():
 
-    Sheet_ID = "1Sb2fChXjWLZqTiEloxFgwRX7dDr8MSzOF1HaYTNv5h0"
+    Sheet_ID = MATERIALS_SHEET_ID
     try:
         df = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{Sheet_ID}/export?format=csv")
         df.columns = df.columns.str.strip()
@@ -46,7 +65,7 @@ def semester_materials(semester):
     if 'username' not in session:
         return redirect(url_for('login'))
 
-    Sheet_ID = "1Sb2fChXjWLZqTiEloxFgwRX7dDr8MSzOF1HaYTNv5h0"
+    Sheet_ID = SEMESTER_MATERIALS_SHEET_ID
     try:
         df = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{Sheet_ID}/export?format=csv")
         df.columns = df.columns.str.strip()
@@ -80,7 +99,7 @@ def semester_materials(semester):
 def weekly_planner():
     import pandas as pd
     def spreadsheet_to_week_tasks():
-        Sheet_ID = "1aux_FtT61ZX3d3fj0aSvhUstJWEzUjqhNyPMYYZPOuA"
+        Sheet_ID = WEEKLY_PLANER_SHEET_ID
         df  = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{Sheet_ID}/export?format=csv") # taking data from spreadsheet
         week_tasks = {}
         days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -119,7 +138,7 @@ def register():
                 session['message'] = f"{session['username']} Registered!"
                 return redirect(url_for('login'))
         else:
-            flash('Invalid username format :"BT23MME___"', 'error')
+            flash('Invalid username format :"BT23MMEXXX"', 'error')
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])

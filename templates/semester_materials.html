@@ -23,11 +23,11 @@
     </header>
 
     <nav class="main-nav" id="mainNav">
-        <a href="index.html">Home</a>
-        <a href="timetable.html">Timetable</a>
-        <a href="weekly.html">Weekly Planner</a>
-        <a href="announcements.html">Announcements</a>
-        <a href="materials.html">Study Materials</a>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('timetable') }}">Timetable</a>
+        <a href="{{ url_for('weekly_planner') }}">Weekly Planner</a>
+        <a href="{{ url_for('announcements') }}">Announcements</a>
+        <a href="{{ url_for('materials_home') }}">Study Materials</a>
     </nav>
 
     <div class="materials-container">
@@ -71,6 +71,10 @@
         {% endfor %}
     </div>
     <script src="/static/script.js"></script>
+
+    <footer>
+        <p>Made with ❤️ By Adarsh Varma</p>
+    </footer>
 </body>
 
 </html>
