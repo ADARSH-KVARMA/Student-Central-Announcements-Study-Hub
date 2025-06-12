@@ -1,0 +1,141 @@
+/* static/user.css */
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #28004f, #1a0033, #1a1a1a); /* Darker purples */
+    color: #e0d1f5; /* Light purple text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically and horizontally */
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h2 {
+    color: #f0b6ff; /* Pinkish purple heading */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+form {
+    background-color: rgba(50, 0, 100, 0.4); /* Darker purple form background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 400px;
+    text-align: left;
+    border: 1px solid rgba(150, 0, 250, 0.3); /* Light purple border */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #b3e5fc; /* Light blue label text */
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(150, 0, 250, 0.2); /* Light purple input border */
+    border-radius: 5px;
+    background-color: rgba(30, 30, 50, 0.7); /* Darker input background */
+    color: #e0d1f5; /* Light purple input text */
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #f0b6ff; /* Pinkish purple focus border */
+    box-shadow: 0 2px 4px rgba(150, 0, 250, 0.4);
+}
+
+input[type="submit"] {
+    background-color: #8e24aa; /* A more vibrant purple for the button */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    font-weight: 500;
+}
+
+input[type="submit"]:hover {
+    background-color: #a569bd; /* Slightly lighter hover color */
+    transform: scale(1.02);
+}
+
+p {
+    color: #b3e5fc; /* Light blue paragraph text */
+    margin-top: 20px;
+    text-align: center;
+}
+
+a {
+    color: #f0b6ff; /* Pinkish purple link color */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Flash Message Styling */
+#login-banner,
+#flash-container {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 150, 136, 0.8); /* Teal for info */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 100;
+    text-align: center;
+    opacity: 0.9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.flash {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.flash.success {
+    background-color: rgba(28, 165, 129, 0.8); /* Green for success */
+}
+
+.flash.error {
+    background-color: rgba(211, 47, 47, 0.8); /* Red for error */
+}
+
+.flash.warning {
+    background-color: rgba(255, 167, 38, 0.8); /* Amber for warning */
+}
+
+/* Adjust top for multiple messages */
+#flash-container {
+    top: 60px; /* Adjust to accommodate the single login banner */
+}
+
+#flash-container .flash:first-child {
+    margin-top: 0;
+}

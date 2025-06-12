@@ -1,0 +1,187 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #28004f, #1a0033, #1a1a1a); /* Match timetable */
+    color: #e0d1f5; /* Match timetable */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-size: 2.4em; /* Adjusted for mobile */
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #f0b6ff; /* Match timetable */
+}
+
+nav {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px; /* Adjusted for mobile */
+}
+
+nav a {
+    display: inline-block;
+    padding: 8px 15px; /* Adjusted for mobile */
+    background-color: rgba(100, 0, 200, 0.2); /* Match timetable */
+    color: #b3e5fc; /* Match timetable */
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+    border: 1px solid rgba(150, 0, 250, 0.3); /* Match timetable */
+    font-size: 0.9em; /* Adjusted for mobile */
+}
+
+nav a:hover {
+    background-color: rgba(150, 0, 250, 0.3); /* Match timetable */
+    color: white; /* Match timetable */
+    transform: scale(1.02); /* Adjusted for mobile */
+}
+
+.announcement-container {
+    background-color: rgba(50, 0, 100, 0.3); /* Similar to timetable container */
+    border-radius: 10px; /* Similar to timetable container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Similar to timetable container */
+    padding: 15px; /* Adjusted for mobile */
+    width: 95%; /* Full width on mobile */
+    max-width: none; /* No max width on mobile */
+    border: 2px solid rgba(150, 0, 250, 0.4); /* Similar to timetable container */
+    display: flex;
+    flex-direction: column; /* Stack items on mobile */
+    gap: 15px; /* Adjusted for mobile */
+    justify-content: flex-start; /* Align items to the start on mobile */
+    margin-bottom: 20px;
+}
+
+.announcement-card {
+    background: rgba(100, 0, 200, 0.1); /* Light purple card background */
+    border-radius: 10px;
+    color: #e0d1f5; /* Light purple text */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adjusted for mobile */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(150, 0, 250, 0.2); /* Purple border for cards */
+    padding: 10px; /* Adjusted for mobile */
+    width: 100%; /* Full width on mobile */
+    min-width: auto; /* Reset min-width for mobile */
+    align-items: stretch; /* Stretch items to full width on mobile */
+    border-color: #3f0883;
+}
+
+.announcement-card:hover {
+    transform: scale(1.03); /* Adjusted for mobile */
+    box-shadow: 0 4px 8px rgba(150, 0, 250, 0.3); /* Adjusted for mobile */
+}
+
+.announcement-card img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 180px; /* Slightly larger image on mobile */
+    margin-bottom: 10px; /* Add some space below the image */
+}
+
+.announcement-text {
+    padding: 0; /* Remove extra padding, content is already within the card */
+}
+
+.announcement-text p {
+    font-size: 1em; /* Slightly larger text on mobile */
+    margin: 8px 0; /* Adjusted margin */
+    line-height: 1.4;
+}
+
+.announcement-text span {
+    font-size: 0.85em; /* Adjusted for mobile */
+    color: #b3e5fc; /* Light blue for date */
+    display: block;
+    margin-top: 10px;
+}
+
+pre {
+    font-family: inherit;
+    white-space: pre-wrap;
+    font-size: 0.95em; /* Adjusted for mobile */
+    margin-top: 10px;
+}
+
+/* --- Media queries for larger screens --- */
+
+/* For tablets and larger screens (min-width: 768px) */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2.8em;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
+    nav a {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    nav a:hover {
+        transform: scale(1.05);
+    }
+
+    .announcement-container {
+        flex-direction: row; /* Display items in a row on larger screens */
+        flex-wrap: wrap;
+        justify-content: center; /* Center items on larger screens */
+        gap: 20px;
+        max-width: 1200px; /* Limit width on larger screens */
+        width: 90%;
+        padding: 20px;
+    }
+
+    .announcement-card {
+        width: calc(50% - 20px); /* Two columns on tablets */
+        min-width: 300px; /* Ensure a minimum width for cards */
+        align-items: stretch; /* Ensure consistent height if content varies */
+    }
+
+    .announcement-card img {
+        max-height: 200px;
+        margin-bottom: 15px;
+    }
+
+    .announcement-text {
+        padding: 15px;
+    }
+
+    .announcement-text p {
+        font-size: 1em;
+        margin: 8px 0;
+        line-height: 1.4;
+    }
+
+    .announcement-text span {
+        font-size: 0.85em;
+        margin-top: 10px;
+    }
+
+    pre {
+        font-size: 1em;
+        margin-top: 10px;
+    }
+}
+
+/* For larger desktops (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .announcement-card {
+        width: calc(30% - 20px); /* Three columns on larger desktops */
+        min-width: 280px;
+    }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Batch-04 - Home</title>
+    <link rel="icon" type="image/png" href="/static/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style_index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    {% if session.get('message') %}
+        <div id="login-banner">
+            {{ session['message'] }}
+        </div>
+    {% endif %}
+
+    <header>
+        <h1>The Batch-04</h1>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-controls="mainNav authNav" aria-expanded="false">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <span class="sr-only">Menu</span>
+        </button>
+    </header>
+
+    <nav class="main-nav" id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="timetable.html">Timetable</a>
+        <a href="weekly.html">Weekly Planner</a>
+        <a href="announcements.html">Announcements</a>
+        <a href="materials.html">Study Materials</a>
+    </nav>
+    <hr>
+    <p>Welcome to the all-in-one platform for your college updates and resources!</p>
+    <hr>
+    <nav class="auth-nav" id="authNav">
+        <a href="login">Login</a>
+        <a href="register">Register</a>
+        <a href="logout">Logout</a>
+    </nav>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const mainNav = document.querySelector('nav.main-nav');
+
+        if (mobileNavToggle && mainNav) {
+            mobileNavToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('open');
+                mobileNavToggle.classList.toggle('open');
+                const isExpanded = mainNav.classList.contains('open');
+                mobileNavToggle.setAttribute('aria-expanded', isExpanded);
+            });
+
+            document.addEventListener('click', function(event) {
+                const isClickInsideToggle = mobileNavToggle.contains(event.target);
+                const isClickInsideNav = mainNav.contains(event.target);
+                const isNavOpen = mainNav.classList.contains('open');
+
+                if (isNavOpen && !isClickInsideNav && !isClickInsideToggle) {
+                    mainNav.classList.remove('open');
+                    mobileNavToggle.classList.remove('open');
+                    mobileNavToggle.setAttribute('aria-expanded', false);
+                }
+            });
+        }
+    });
+        
+    </script>
+    <footer>
+        <p>Made with ❤️ By Adarsh Varma</p>
+    </footer>
+</body>
+
+</html>

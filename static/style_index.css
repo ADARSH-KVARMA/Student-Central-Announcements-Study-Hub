@@ -1,0 +1,343 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #28004f, #1a0033, #1a1a1a);
+    color: #e0d1f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 20px;
+    font-size: 16px; /* Base font size for larger screens */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin-bottom: 10px; /* Reduced header margin on mobile */
+    padding: 0 10px;
+}
+
+h1 {
+    text-align: left;
+    margin-bottom: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-size: 2.5vw; /* Slightly reduced vw for heading */
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #f0b6ff;
+    min-font-size: 18px; /* Minimum font size for heading */
+}
+
+nav.main-nav,
+nav.auth-nav {
+    text-align: center;
+    margin-bottom: 15px; /* Reduced bottom margin */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+nav.main-nav a,
+nav.auth-nav a {
+    display: inline-block;
+    padding: 8px 15px; /* Further reduced padding */
+    background-color: rgba(132, 23, 241, 0.2);
+    color: #b3e5fc;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 5px; /* Further reduced horizontal margin */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+    border: 1px solid rgba(150, 0, 250, 0.3);
+    font-size: 0.9em; /* Slightly smaller base link font */
+}
+
+nav.main-nav a:hover,
+nav.auth-nav a:hover {
+    background-color: rgba(150, 0, 250, 0.3);
+    color: white;
+    transform: scale(1.05);
+}
+
+hr {
+    border: 1px solid rgba(150, 0, 250, 0.2);
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    font-size: 1.8vw; /* Reduced vw for paragraph */
+    margin-bottom: 15px;
+    min-font-size: 12px; /* Minimum font size for paragraph */
+}
+
+footer {
+    margin-top: auto; /* This pushes the footer to the bottom */
+    /* Add any other footer styles here */
+    color: white; /* Example styling */
+    padding: 10px; /* Example styling */
+    text-align: center; /* Example styling */
+  }
+
+#login-banner {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px; /* Reduced padding */
+    border-radius: 9px;
+    text-align: right;
+    font-size: 0.9em; /* Smaller font for banner */
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    position: fixed;
+    top: 5px; /* Closer to the top */
+    right: 5px; /* Closer to the right */
+    z-index: 9099;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.mobile-nav-toggle {
+    display: none; /* Hidden by default on larger screens */
+    cursor: pointer;
+    padding: 8px; /* Add some padding for better touch/click area */
+    background-color: transparent; /* Make the background transparent to blend better */
+    border: none; /* Remove the default button border */
+    transition: transform 0.3s ease-in-out; /* Add transition for rotation */
+}
+
+.mobile-nav-toggle.open {
+    background-color: #28004f;
+}
+
+.mobile-nav-toggle .bar {
+    width: 26px;
+    height: 2px;
+    background-color: #b3e5fc;
+    margin: 3px 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.mobile-nav-toggle.open .bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.mobile-nav-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-nav-toggle.open .bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobile-nav-toggle .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+    body {
+        font-size: 16px; /* Increased base font on mobile */
+    }
+
+    header {
+        margin-bottom: 10px; /* Slightly increased header margin for better spacing */
+    }
+
+    h1 {
+        font-size: 4.5vw; /* Increased heading size for better readability */
+        min-font-size: 20px; /* Increased minimum heading font size */
+    }
+
+    nav.main-nav {
+        display: flex; /* Use flexbox */
+        flex-direction: column; /* Stack the links vertically */
+        align-items: stretch; /* Make links stretch to full width */
+        position: fixed; /* Changed to fixed for better interaction */
+        top: 60px; /* Adjust top to be below the header/toggle */
+        left: 0;
+        width: 100%;
+        background-color: rgba(30, 30, 50, 0.95);
+        z-index: 10;
+        padding: 20px 0; /* Increased padding for more touch area */
+        box-sizing: border-box;
+        transform: translateX(-100%); /* Initially slide off-screen */
+        transition: transform 0.3s ease-in-out; /* Add slide animation */
+        height: calc(100vh - 60px); /* Occupy the viewport height below the header */
+        overflow-y: auto; /* Allow scrolling if there are many links */
+    }
+
+    nav.main-nav.open {
+        transform: translateX(0); /* Slide in when open */
+    }
+
+    nav.main-nav a {
+        display: block; /* Make each link a block-level element */
+        padding: 12px 25px; /* Increased link padding for better touch area */
+        font-size: 1.1em; /* Increased link font size */
+        text-align: center; /* Center the text within the link */
+        margin: 0; /* Remove any margin that might affect width */
+    }
+
+    nav.auth-nav {
+        display: flex; /* Make auth-nav visible by default on mobile */
+        justify-content: center;
+        margin-bottom: 12px; /* Slightly increased bottom margin */
+    }
+
+    nav.auth-nav a {
+        margin: 0 5px; /* Keep a bit of horizontal margin */
+        padding: 8px 15px; /* Slightly increased padding */
+        font-size: 0.95em; /* Slightly increased font for auth buttons */
+    }
+
+    .mobile-nav-toggle {
+        display: flex; /* FORCE SHOW THE TOGGLE ON MOBILE */
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
+        position: relative; /* For z-index context */
+        z-index: 11; /* Ensure it's above the nav */
+    }
+
+    .mobile-nav-toggle .bar {
+        width: 25px; /* Slightly larger bars */
+        height: 3px; /* Slightly thicker bars */
+        background-color: #b3e5fc; /* ENSURE BAR COLOR ON MOBILE */
+        margin: 4px 0; /* Adjust bar margin */
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+    .mobile-nav-toggle.open .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .mobile-nav-toggle.open .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-nav-toggle.open .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    
+    hr {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 3.2vw; /* Increased paragraph size */
+        min-font-size: 14px; /* Increased minimum paragraph font size */
+        margin-bottom: 12px;
+    }
+
+    #login-banner {
+        font-size: 0.9em; /* Slightly larger font for banner */
+        padding: 8px 12px; /* Slightly increased banner padding */
+        top: 5px;
+        right: 5px;
+    }
+}
+
+/* Styles for larger screens (over 600px) */
+@media (min-width: 601px) {
+    body {
+        font-size: 16px; /* Reset base font size */
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 2.8em; /* Reset heading size */
+        min-font-size: auto; /* Remove minimum font size */
+    }
+
+    nav.main-nav {
+        display: flex; /* Show main nav on larger screens */
+        justify-content: center;
+        margin-bottom: 15px;
+        top: auto; /* Reset top */
+        transform: translateX(0); /* Ensure it's visible on larger screens */
+        transition: none; /* Remove transition on larger screens */
+        position: static; /* Reset position */
+        height: auto; /* Reset height */
+        overflow-y: visible; /* Reset overflow */
+    }
+
+    nav.main-nav a {
+        margin: 0 10px; /* Reset link margin */
+        padding: 10px 20px; /* Reset link padding */
+        font-size: 1em; /* Reset link font size */
+    }
+
+    nav.auth-nav {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    nav.auth-nav a {
+        margin: 0 5px; /* Reset auth button margin */
+        padding: 8px 15px; /* Reset auth button padding */
+        font-size: 0.9em; /* Reset auth button font size */
+    }
+
+    p {
+        font-size: 1.2em; /* Reset paragraph size */
+        min-font-size: auto; /* Remove minimum font size */
+        margin-bottom: 20px;
+    }
+
+    #login-banner {
+        font-size: 1.1em; /* Reset banner font size */
+        padding: 10px 20px; /* Reset banner padding */
+        top: 10px; /* Reset top position */
+        right: 10px; /* Reset right position */
+    }
+
+    .mobile-nav-toggle {
+        display: none; /* FORCE HIDE THE TOGGLE ON LARGER SCREENS */
+        padding: 10px; /* Reset toggle padding */
+    }
+
+    .mobile-nav-toggle .bar {
+        width: 30px; /* Reset bar width */
+        height: 3px; /* Reset bar height */
+        margin: 5px 0; /* Reset bar margin */
+        transition: none; /* Remove transition on larger screens */
+    }
+
+    .mobile-nav-toggle.open {
+        transform: rotate(0deg); /* Reset rotation on larger screens */
+    }
+
+    .mobile-nav-toggle.open .bar:nth-child(1) {
+        transform: none; /* Reset bar 1 transform */
+    }
+
+    .mobile-nav-toggle.open .bar:nth-child(2) {
+        opacity: 5; /* Reset bar 2 opacity */
+    }
+
+    .mobile-nav-toggle.open .bar:nth-child(3) {
+        transform: none; /* Reset bar 3 transform */
+    }
+}

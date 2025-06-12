@@ -1,0 +1,55 @@
+
+/* Styles for body and timetable container */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #28004f, #1a0033, #1a1a1a); /* Darker purples */
+    color: #e0d1f5; /* Light purple text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 20px;
+}
+
+#timetable-container {
+    background-color: rgba(50, 0, 100, 0.3); /* Darker purple container */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+    overflow-x: auto;
+    border: 2px solid rgba(150, 0, 250, 0.4); /* Purple border */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid rgba(150, 0, 250, 0.2); /* Purple table borders */
+    padding: 12px 15px;
+    text-align: center;
+    transition: transform 0.2s ease, border-radius 0.2s ease;
+    font-weight: 500;
+}
+
+th {
+    background-color: rgba(50, 0, 100, 0.2); /* Darker purple table header */
+    font-weight: 600;
+    color: #f0b6ff; /* Pinkish purple header text*/
+}
+
+tr:nth-child(even) {
+    background-color: rgba(100, 0, 200, 0.05); /* Light purple rows */
+}
+
+th:hover, td:hover {
+    transform: scale(1.1);
+    background-color: rgba(150, 0, 250, 0.1); /* Lighter purple hover */
+    border-radius: 8px;
+}

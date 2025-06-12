@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ semester }} - Study Materials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/static/icon.png">
+    <link rel="stylesheet" href="/static/materials.css">
+    <link rel="stylesheet" href="/static/style_index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    
+
+    <header>
+        <h1>{{ semester }} - Study Materials</h1>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-controls="mainNav authNav" aria-expanded="false">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <span class="sr-only">Menu</span>
+        </button>
+    </header>
+
+    <nav class="main-nav" id="mainNav">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('timetable') }}">Timetable</a>
+        <a href="{{ url_for('weekly_planner') }}">Weekly Planner</a>
+        <a href="{{ url_for('announcements') }}">Announcements</a>
+        <a href="{{ url_for('materials_home') }}">Study Materials</a>
+    </nav>
+
+    <div class="materials-container">
+
+        <div style="width: 100%; text-align: left; margin-bottom: 20px;" >
+            <a href="{{ url_for('materials_home') }}" 
+               style="display: inline-block; padding: 8px 16px; background-color: rgba(100, 0, 200, 0.2); 
+                      color: #b3e5fc; border-radius: 5px; text-decoration: none; 
+                      border: 1px solid rgba(150, 0, 250, 0.3); font-weight: 500; 
+                      transition: background-color 0.3s, color 0.3s, transform 0.2s;">
+                ← Back to Semesters
+            </a>
+        </div>
+
+        {% for subject, sections in grouped_materials.items() %}
+        <div class="subject-group">
+            <h2>{{ subject }}</h2>
+
+            {% if sections.my_notes %}
+            <div class="note-section">
+                <h3>My Notes</h3>
+                <ol>
+                    {% for chapter, link in sections.my_notes.items() %}
+                    <li><a href="{{ link }}" target="_blank">{{ chapter }}</a></li>
+                    {% endfor %}
+                </ol>
+            </div>
+            {% endif %}
+
+            {% if sections.teachers_notes %}
+            <div class="note-section">
+                <h3>Teachers Notes</h3>
+                <ol>
+                    {% for chapter, link in sections.teachers_notes.items() %}
+                    <li><a href="{{ link }}" target="_blank">{{ chapter }}</a></li>
+                    {% endfor %}
+                </ol>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <script src="/static/script.js"></script>
+
+    <footer>
+        <p>Made with ❤️ By Adarsh Varma</p>
+    </footer>
+</body>
+
+</html>

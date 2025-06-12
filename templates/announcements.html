@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Announcements</title>
+    <link rel="icon" type="image/png" href="\static\icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/announcements.css">
+    <link rel="stylesheet" href="/static/style_index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1>Announcement</h1>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-controls="mainNav authNav" aria-expanded="false">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <span class="sr-only">Menu</span>
+        </button>
+    </header>
+
+    <nav class="main-nav" id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="timetable.html">Timetable</a>
+        <a href="weekly.html">Weekly Planner</a>
+        <a href="announcements.html">Announcements</a>
+        <a href="materials.html">Study Materials</a>
+    </nav>
+
+    <div class="announcement-container">
+        {% for a in announcements %}
+            <div class="announcement-card">
+                <img src="{{ a.image }}" alt="Announcement Image">
+                <div class="announcement-text">
+                    <pre>{{ a.text }}</pre>
+                    <span>{{ a.date }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="/static/script.js"></script>
+
+    <footer>
+        <p>Made with ❤️ By Adarsh Varma</p>
+    </footer>
+</body>
+</html>

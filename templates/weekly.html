@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weekly Planner</title>
+    <link rel="stylesheet" href="/static/weekly.css">
+    <link rel="icon" type="image/png" href="\static\icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style_index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/weekly.css">
+</head>
+<body>
+    <header>
+        <h1>Weekly Planner</h1>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-controls="mainNav authNav" aria-expanded="false">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <span class="sr-only">Menu</span>
+        </button>
+    </header>
+
+    <nav class="main-nav" id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="timetable.html">Timetable</a>
+        <a href="weekly.html">Weekly Planner</a>
+        <a href="announcements.html">Announcements</a>
+        <a href="materials.html">Study Materials</a>
+    </nav>
+    <hr>
+     <div class="planner">
+        <div class="week-info">
+            <div class="week-of">
+                <strong>Week of</strong>
+                <p id="week-date">{{ week_date }}</p>
+            </div>
+        </div>
+
+        <div class="days">
+            <div class="day" data-day="Monday">
+                <div class="day-header">Monday</div>
+                <div class="day-tasks">
+                    <ul>
+                        {% for task in week_tasks['Monday'] %}
+                            <li>{{ task }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="day" data-day="Tuesday">
+                <div class="day-header">Tuesday</div>
+                <div class="day-tasks">
+                    <ul>
+                        {% for task in week_tasks['Tuesday'] %}
+                            <li>{{ task }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="day" data-day="Wednesday">
+                <div class="day-header">Wednesday</div>
+                <div class="day-tasks">
+                    <ul>
+                        {% for task in week_tasks['Wednesday'] %}
+                            <li>{{ task }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="day" data-day="Thursday">
+                <div class="day-header">Thursday</div>
+                <div class="day-tasks">
+                    <ul>
+                        {% for task in week_tasks['Thursday'] %}
+                            <li>{{ task }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="day" data-day="Friday">
+                <div class="day-header">Friday</div>
+                <div class="day-tasks">
+                    <ul>
+                        {% for task in week_tasks['Friday'] %}
+                            <li>{{ task }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="day" data-day="Saturday">
+                <div class="day-header">Saturday</div>
+                <div class="day-tasks">
+                    <ul>
+                        {% for task in week_tasks['Saturday'] %}
+                            <li>{{ task }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="day" data-day="Sunday">
+                <div class="day-header">Sunday</div>
+                <div class="day-tasks">
+                    <ul>
+                        {% for task in week_tasks['Sunday'] %}
+                            <li>{{ task }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dayPopup" class="day-popup">
+        <div class="day-popup-content">
+            <span class="day-popup-close">&times;</span>
+            <h2 class="day-popup-header" id="popupDayTitle"></h2>
+            <div class="day-popup-tasks">
+                <ul id="popupTaskList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js">
+        
+    </script>
+
+    <footer>
+        <p>Made with ❤️ By Adarsh Varma</p>
+    </footer>
+</body>
+</html>
