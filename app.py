@@ -1,29 +1,10 @@
-# /// script
-# dependencies = [
-#   "flask",
-#   "pandas",
-#   "gspread",
-#   "oauth2client",
-# ]
-# ///
-
 import pandas as pd
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from sheets import get_users, register_user
-import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
-SECRET_KEY = os.getenv("SECRET_KEY")
-ANNOUNCEMENT_SHEET_ID = os.getenv("ANNOUNCEMENT_SHEET_ID")
-MATERIALS_SHEET_ID = os.getenv("MATERIALS_SHEET_ID")
-SEMESTER_MATERIALS_SHEET_ID = os.getenv("SEMESTER_MATERIALS_SHEET_ID")
-WEEKLY_PLANER_SHEET_ID = os.getenv("WEEKLY_PLANER_SHEET_ID")
-
 app = Flask(__name__)
 
-app.secret_key = SECRET_KEY
+app.secret_key = 'your_secret_key'
+your_deployment_id = 'AKfycbwMXr1lTdHlvyfF687iJ0GTrHA2uUpoOFpKVuhChaRZlukg3ReaNM4IG_0PxKeaiGEq'
 
 
 
@@ -36,22 +17,22 @@ def home():
     return render_template('index.html')
 
 @app.route('/timetable.html')
-def timetable(): 
+def timetable():
     return render_template('timetable.html')
 
 @app.route('/announcements.html')
 def announcements():
-    Sheet_ID = ANNOUNCEMENT_SHEET_ID
-    df  = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{Sheet_ID}/export?format=csv") 
+    Sheet_ID = "162y73nVEfJyMKpyEWXwYgYFYul8MObg_2ed3WN_s9gA"
+    df  = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{Sheet_ID}/export?format=csv")
     announcements = df.to_dict(orient='records') # converitng it to required format
     announcements = announcements[::-1]
-    
+
     return render_template("announcements.html", announcements=announcements)
 
 @app.route('/materials.html')
 def materials_home():
 
-    Sheet_ID = MATERIALS_SHEET_ID
+    Sheet_ID = "1Sb2fChXjWLZqTiEloxFgwRX7dDr8MSzOF1HaYTNv5h0"
     try:
         df = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{Sheet_ID}/export?format=csv")
         df.columns = df.columns.str.strip()
@@ -62,10 +43,10 @@ def materials_home():
 
 @app.route('/materials/<semester>')
 def semester_materials(semester):
-    if 'username' not in session:
-        return redirect(url_for('login'))
+    # if 'username' not in session:
+    #     return redirect(url_for('login'))
 
-    Sheet_ID = SEMESTER_MATERIALS_SHEET_ID
+    Sheet_ID = "1Sb2fChXjWLZqTiEloxFgwRX7dDr8MSzOF1HaYTNv5h0"
     try:
         df = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{Sheet_ID}/export?format=csv")
         df.columns = df.columns.str.strip()
@@ -94,12 +75,11 @@ def semester_materials(semester):
         return render_template('semester_materials.html', semester=semester, grouped_materials=grouped_materials)
     except Exception as e:
         return f"An error occurred: {e}"
-        
+
 @app.route('/weekly.html')
 def weekly_planner():
-    import pandas as pd
     def spreadsheet_to_week_tasks():
-        Sheet_ID = WEEKLY_PLANER_SHEET_ID
+        Sheet_ID = "1aux_FtT61ZX3d3fj0aSvhUstJWEzUjqhNyPMYYZPOuA"
         df  = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{Sheet_ID}/export?format=csv") # taking data from spreadsheet
         week_tasks = {}
         days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -117,7 +97,7 @@ def weekly_planner():
         week_date = df.loc[0, 'Week']
 
         return week_tasks, week_date
-    
+
     week_tasks, week_date = spreadsheet_to_week_tasks()
 
     return render_template('weekly.html', week_tasks=week_tasks, week_date= week_date)
@@ -138,7 +118,7 @@ def register():
                 session['message'] = f"{session['username']} Registered!"
                 return redirect(url_for('login'))
         else:
-            flash('Invalid username format :"BT23MMEXXX"', 'error')
+            flash('Invalid username format :"BT23MME___"', 'error')
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -148,14 +128,14 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        
+
         if any(u['Username'] == username and str(u['Password']) == password for u in users):
             session['username'] = username
             session['message'] = f"Welcome, {session['username']}!"
             return render_template('index.html', username  = session['username'])
         else:
             flash('Invalid user name or Passward.', 'error')
-        
+
     return render_template('login.html')
 
 @app.route('/logout')
@@ -163,8 +143,5 @@ def logout():
     session.clear()
     return redirect(url_for('home'))
 
-
-
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
